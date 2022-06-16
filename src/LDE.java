@@ -10,6 +10,31 @@ public class LDE {
 		tail.prev = head;
 	}
 	
+	// problem 1 -> insert value A in position B
+	public void insertAtPosition(int value, int position) {
+		if (position < 0 || position > this.length()) return;
+		
+		Node aux = this.head;
+		
+		for (int i = 0; i < position; i++) {
+			aux = aux.next;
+		}
+		
+		Node node = new Node(value);
+		node.next = aux.next;
+		node.prev = aux;
+		aux.next.prev = node;
+		aux.next = node;
+	}
+	
+	public void insetAtEnd(int value) {
+		Node node = new Node(value);
+		node.next = tail;
+		node.prev = tail.prev;
+		tail.prev.next = node;
+		tail.prev = node;
+	}
+	
 	public int length() {
 		int tam = 0;
 		Node aux = head.next;
